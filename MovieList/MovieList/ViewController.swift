@@ -64,7 +64,7 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         for jdata in jsonData.Search {
                             self.movies.append(jdata)
-                            self.getImage(from: jdata.Poster)
+                            self.getImage(from: jdata.posterImage)
                         }
                         self.dismissLoadingView()
                     }
@@ -110,8 +110,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if !movies.isEmpty {
             
             cell.imdbID.text = movies[indexPath.row].imdbID
-            cell.titleLabel.text = movies[indexPath.row].Title
-            cell.year.text = movies[indexPath.row].Year
+            cell.titleLabel.text = movies[indexPath.row].movieTitle
+            cell.year.text = movies[indexPath.row].year
             cell.posterImageView.image = images[indexPath.row]
         } else {
             cell.imdbID.text = "yo boie"

@@ -59,24 +59,16 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-//        posterImageView.translatesAutoresizingMaskIntoConstraints = false
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        year.translatesAutoresizingMaskIntoConstraints = false
-//        imdbID.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(posterImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(year)
         contentView.addSubview(imdbID)
-
     }
     
     private func UILayout() {
         NSLayoutConstraint.activate([
             posterImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            posterImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             posterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-//            posterImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: padding),
             posterImageView.widthAnchor.constraint(equalToConstant: 70),
             
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),

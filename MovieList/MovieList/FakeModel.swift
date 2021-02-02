@@ -13,7 +13,14 @@ struct Movies: Codable {
 
 struct MovieProp: Codable {
     var imdbID: String
-    var Title: String
-    var Year: String
-    var Poster: String
+    var movieTitle: String
+    var year: String
+    var posterImage: String
+    
+    enum CodingKeys: String, CodingKey {
+        case imdbID
+        case movieTitle = "Title"
+        case year = "Year"
+        case posterImage = "Poster"
+    }
 }
