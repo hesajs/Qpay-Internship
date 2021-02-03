@@ -28,7 +28,8 @@ class ViewController: UIViewController {
         
         configureTableView()
         tableUILayout()
-        fetchData(endpoint: endpoint)
+//        fetchData(endpoint: endpoint)
+        fetchFromCoreData()
     }
     
     
@@ -140,24 +141,32 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return coreDataMovie.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifer, for: indexPath) as! MovieTableViewCell
         
-        if !movies.isEmpty {
-            
-            cell.imdbID.text = movies[indexPath.row].imdbID
-            cell.titleLabel.text = movies[indexPath.row].movieTitle
-            cell.year.text = movies[indexPath.row].year
-            cell.posterImageView.image = images[indexPath.row]
-        } else {
-            cell.imdbID.text = "yo boie"
-            cell.titleLabel.text = "yo boie"
-            cell.year.text = "yo boie"
-            cell.posterImageView.image = #imageLiteral(resourceName: "noimage")
+//        if !movies.isEmpty {
+//
+//            cell.imdbID.text = movies[indexPath.row].imdbID
+//            cell.titleLabel.text = movies[indexPath.row].movieTitle
+//            cell.year.text = movies[indexPath.row].year
+//            cell.posterImageView.image = images[indexPath.row]
+//        } else {
+//            cell.imdbID.text = "yo boie"
+//            cell.titleLabel.text = "yo boie"
+//            cell.year.text = "yo boie"
+//            cell.posterImageView.image = #imageLiteral(resourceName: "noimage")
+//        }
+        
+        if !coreDataMovie.isEmpty {
+            cell.imdbID.text = coreDataMovie[indexPath.row].imdbID
+            cell.titleLabel.text = coreDataMovie[indexPath.row].title
+            cell.year.text = coreDataMovie[indexPath.row].year
+            cell.posterImageView.image = UIImage(data: coreDataMovie[indexPath.row].posterImage!)
         }
+        
         return cell
     }
     
