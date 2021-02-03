@@ -15,6 +15,7 @@
 		A085418625C90BCB0071BD7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A085418525C90BCB0071BD7C /* ViewController.swift */; };
 		A085418B25C90BCC0071BD7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A085418A25C90BCC0071BD7C /* Assets.xcassets */; };
 		A085418E25C90BCC0071BD7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A085418C25C90BCC0071BD7C /* LaunchScreen.storyboard */; };
+		A0C2449525CAACF400E035E3 /* MovieList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0C2449325CAACF400E035E3 /* MovieList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A085418A25C90BCC0071BD7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A085418D25C90BCC0071BD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A085418F25C90BCC0071BD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0C2449425CAACF400E035E3 /* MovieList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,42 @@
 		A085418025C90BCB0071BD7C /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
-				A085418125C90BCB0071BD7C /* AppDelegate.swift */,
-				A085418325C90BCB0071BD7C /* SceneDelegate.swift */,
+				A0C2449125CAACC500E035E3 /* Support */,
 				A085418525C90BCB0071BD7C /* ViewController.swift */,
 				A085418A25C90BCC0071BD7C /* Assets.xcassets */,
-				A085418C25C90BCC0071BD7C /* LaunchScreen.storyboard */,
 				A085418F25C90BCC0071BD7C /* Info.plist */,
-				A038B40A25C9114200582B18 /* FakeModel.swift */,
-				A038B40D25C911E000582B18 /* MovieTableViewCell.swift */,
+				A0C2448F25CAAC9B00E035E3 /* Model */,
+				A0C2449025CAACA800E035E3 /* Custom View */,
 				A038B41225C951E500582B18 /* UIViewController+Ext.swift */,
 			);
 			path = MovieList;
+			sourceTree = "<group>";
+		};
+		A0C2448F25CAAC9B00E035E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A038B40A25C9114200582B18 /* FakeModel.swift */,
+				A0C2449325CAACF400E035E3 /* MovieList.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A0C2449025CAACA800E035E3 /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+				A038B40D25C911E000582B18 /* MovieTableViewCell.swift */,
+			);
+			path = "Custom View";
+			sourceTree = "<group>";
+		};
+		A0C2449125CAACC500E035E3 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A085418125C90BCB0071BD7C /* AppDelegate.swift */,
+				A085418325C90BCB0071BD7C /* SceneDelegate.swift */,
+				A085418C25C90BCC0071BD7C /* LaunchScreen.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A038B40E25C911E000582B18 /* MovieTableViewCell.swift in Sources */,
+				A0C2449525CAACF400E035E3 /* MovieList.xcdatamodeld in Sources */,
 				A038B41325C951E500582B18 /* UIViewController+Ext.swift in Sources */,
 				A085418625C90BCB0071BD7C /* ViewController.swift in Sources */,
 				A085418225C90BCB0071BD7C /* AppDelegate.swift in Sources */,
@@ -343,6 +371,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A0C2449325CAACF400E035E3 /* MovieList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A0C2449425CAACF400E035E3 /* MovieList.xcdatamodel */,
+			);
+			currentVersion = A0C2449425CAACF400E035E3 /* MovieList.xcdatamodel */;
+			path = MovieList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A085417625C90BCB0071BD7C /* Project object */;
 }

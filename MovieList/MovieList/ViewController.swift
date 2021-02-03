@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
     let endpoint = "https://fake-movie-database-api.herokuapp.com/api?s=batman"
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var tableView = UITableView(frame: .zero)
     var movies: [MovieProp] = []
     var images: [UIImage] = []
+    var coreDataMovie: [MovieProps] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,7 @@ class ViewController: UIViewController {
         tableUILayout()
         fetchData(endpoint: endpoint)
     }
+    
     
     func configureTableView() {
         view.addSubview(tableView)
@@ -64,11 +70,18 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         for jdata in jsonData.Search {
                             self.movies.append(jdata)
-                            self.getImage(from: jdata.posterImage)
+                            self.downloadImage(from: jdata.posterImage)
+                            
+                            //MARK: Insert to Core Data
+                            let newMovie = MovieProps(context: self.context)
+                            newMovie.imdbID = jdata.imdbID
+                            newMovie.title = jdata.movieTitle
+                            newMovie.year = jdata.year
+                            newMovie.posterImage = self.getImage(from: jdata.posterImage).pngData()
+                            try! self.context.save()
                         }
                         self.dismissLoadingView()
                     }
-                    
                 } catch let jsonError {
                     print(jsonError)
                 }
@@ -77,7 +90,8 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func getImage(from string: String) {
+    
+    func downloadImage(from string: String) {
 //        self.images.removeAll()
         guard let url = URL(string: string)
         else {
@@ -96,7 +110,32 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    
+    func getImage(from string: String) -> UIImage {
+        var img = #imageLiteral(resourceName: "noimage")
+        if let url = URL(string: string) {
+            if let data = try? Data(contentsOf: url, options: []) {
+                if let image = UIImage(data: data) { img = image }
+            }
+        }
+        return img
+    }
+    
+    
+    func fetchFromCoreData() {
+        do {
+            coreDataMovie = try context.fetch(MovieProps.fetchRequest())
+        } catch {
+            print("Error while fetching... \(error)")
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
+
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
